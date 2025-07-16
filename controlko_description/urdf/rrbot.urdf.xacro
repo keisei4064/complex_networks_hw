@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="rrbot">
+
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="use_mock_hardware" default="false" />
+  <xacro:arg name="mock_sensor_commands" default="false" />
+  <xacro:arg name="sim_gazebo_classic" default="false" />
+  <xacro:arg name="simulation_controllers" default="" />
+
+  <xacro:include filename="$(find controlko_description)/urdf/rrbot/rrbot_macro.xacro" />
+  <xacro:include filename="$(find controlko_description)/urdf/rrbot/rrbot_macro.ros2_control.xacro" />
+
+  <!-- "world"に固定されたリンクを作る -->
+  <link name="world" />
+
+  <!-- ロボットのマクロを読み込む -->
+  <xacro:rrbot prefix="$(arg prefix)" parent="world">
+    <origin xyz="0 0 0" rpy="0 0 0" /> <!-- ブロックパラメータ(worldでの位置) -->
+  </xacro:rrbot>
+
+  <!-- コントローラーのマクロを読み込む -->
+  <xacro:rrbot_ros2_control
+    name="rrbot"
+    prefix="$(arg prefix)"
+    use_mock_hardware="$(arg use_mock_hardware)"
+    mock_sensor_commands="$(arg mock_sensor_commands)"
+    sim_gazebo_classic="$(arg sim_gazebo_classic)" />
+
+  <!-- Gazebo Classicのプラグインを読み込む -->
+  <xacro:if value="$(arg sim_gazebo_classic)">
+    <gazebo reference="world">
+    </gazebo>
+    <gazebo>
+      <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+        <parameters>$(arg simulation_controllers)</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+</robot>

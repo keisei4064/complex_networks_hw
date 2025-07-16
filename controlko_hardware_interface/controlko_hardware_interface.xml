@@ -1,0 +1,9 @@
+<!--
+https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Pluginlib.html#plugin-declaration-xml -->
+<library path="controlko_hardware_interface">
+  <class name="controlko_hardware_interface/RRBotHardwareInterface"
+    type="controlko_hardware_interface::RRBotHardwareInterface"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>RRBot Hardware Interface</description>
+  </class>
+</library>
