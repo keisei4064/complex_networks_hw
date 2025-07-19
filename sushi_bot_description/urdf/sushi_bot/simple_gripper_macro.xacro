@@ -25,6 +25,9 @@
 				</geometry>
 			</collision>
 		</link>
+		<gazebo reference="${prefix}gripper_base">
+			<material>Gazebo/Grey</material>
+		</gazebo>
 
 		<!-- Right Finger -->
 		<joint name="${prefix}finger_right_joint" type="prismatic">
@@ -50,6 +53,9 @@
 				</geometry>
 			</collision>
 		</link>
+		<gazebo reference="${prefix}finger_right">
+			<material>Gazebo/White</material>
+		</gazebo>
 
 		<!-- Left Finger -->
 		<joint name="${prefix}finger_left_joint" type="prismatic">
@@ -75,6 +81,9 @@
 				</geometry>
 			</collision>
 		</link>
+		<gazebo reference="${prefix}finger_left">
+			<material>Gazebo/White</material>
+		</gazebo>
 
 		<joint name="${prefix}grasp_point_joint" type="fixed">
 			<parent link="${prefix}gripper_base" />
