@@ -7,10 +7,10 @@
   <xacro:arg name="sim_gazebo_classic" default="false" />
   <xacro:arg name="simulation_controllers" default="" />
 
-  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.xacro" />
-  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/puma_robot_macro.xacro" />
+  <!-- <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.xacro" />
+  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/puma_robot_macro.xacro" /> -->
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/stanford_robot_macro.xacro" />
-  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.ros2_control.xacro" />
+  <!-- <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.ros2_control.xacro" /> -->
 
   <!-- "world"に固定されたリンクを作る -->
   <link name="world" />

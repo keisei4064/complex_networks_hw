@@ -92,5 +92,12 @@
     <emissive>0 0 0 0</emissive>
   </material>
 
+  <material name="Violet">
+    <color rgba="${102/255} ${46/255} ${145/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
 
 </robot>
