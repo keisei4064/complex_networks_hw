@@ -10,6 +10,7 @@
   <xacro:include filename="$(find sushi_bot_description)/urdf/common.xacro" />
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/stanford_robot_macro.xacro" />
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/simple_gripper_macro.xacro" />
+  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.ros2_control.xacro" />
 
   <!-- "world"に固定されたリンクを作る -->
   <link name="world" />
@@ -21,15 +22,15 @@
   <xacro:simple_gripper prefix="$(arg prefix)" parent="$(arg prefix)tool0" />
 
   <!-- コントローラーのマクロを読み込む -->
-  <!-- <xacro:sushi_bot_ros2_control
+  <xacro:sushi_bot_ros2_control
     name="sushi_bot"
     prefix="$(arg prefix)"
     use_mock_hardware="$(arg use_mock_hardware)"
     mock_sensor_commands="$(arg mock_sensor_commands)"
-    sim_gazebo_classic="$(arg sim_gazebo_classic)" /> -->
+    sim_gazebo_classic="$(arg sim_gazebo_classic)" />
 
   <!-- Gazebo Classicのプラグインを読み込む -->
-  <!-- <xacro:if value="$(arg sim_gazebo_classic)">
+  <xacro:if value="$(arg sim_gazebo_classic)">
     <gazebo reference="world">
     </gazebo>
     <gazebo>
@@ -37,6 +38,6 @@
         <parameters>$(arg simulation_controllers)</parameters>
       </plugin>
     </gazebo>
-  </xacro:if> -->
+  </xacro:if>
 
 </robot>

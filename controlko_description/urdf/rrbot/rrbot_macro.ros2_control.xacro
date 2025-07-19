@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- モックコンポーネントの設定 -->
+  <!-- The caret ^ indicates to use the outer-scope property (with same
+  name). 
+   The pipe | indicates to use the given fallback if the property is not defined in outer scope. -->
+  <!-- `^`は，外部スコーププロパティ（同名）を使用します -->
+  <!-- `|`は，外部スコープでプロパティが定義されていない場合に指定されたフォールバックを使用します -->
+  <xacro:macro name="rrbot_ros2_control"
+    params="name 
+            prefix 
+            use_mock_hardware:=^|false 
+            mock_sensor_commands:=^|false
+            sim_gazebo_classic:=^|false">
+
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <!-- Mock Hardware (rvizに状態を即時反映） -->
+        <xacro:if value="${use_mock_hardware}">
+          <plugin>mock_components/GenericSystem</plugin>
+          <param name="mock_sensor_commands">${mock_sensor_commands}</param>
+        </xacro:if>
+
+        <!-- Gazebo Classic用 -->
+        <xacro:if value="${sim_gazebo_classic}">
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </xacro:if>
+
+        <!-- 自作のHardware Interface -->
+        <xacro:unless value="${use_mock_hardware or sim_gazebo_classic}">
+          <plugin>controlko_hardware_interface/RRBotHardwareInterface</plugin>
+        </xacro:unless>
+      </hardware>
+      <joint name="${prefix}joint1">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+      <joint name="${prefix}joint2">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <!-- 6軸 Force-Torque-Sensor センサ -->
+      <sensor name="tcp_fts_sensor">
+        <state_interface name="fx" />
+        <state_interface name="fy" />
+        <state_interface name="fz" />
+        <state_interface name="tx" />
+        <state_interface name="ty" />
+        <state_interface name="tz" />
+        <param name="frame_id">tool0</param>
+      </sensor>
+
+      <!-- GPIO -->
+      <gpio name="flange_gpios">
+        <state_interface name="digital_input1" />
+        <state_interface name="digital_input2" />
+        <command_interface name="digital_output1">
+          <param name="initial_value">false</param>
+        </command_interface>
+        <!-- <state_interface name="digital_output1" /> -->
+        <command_interface name="digital_output2">
+          <param name="initial_value">false</param>
+        </command_interface>
+        <!-- <state_interface name="digital_output2" /> -->
+      </gpio>
+    </ros2_control>
+
+  </xacro:macro>
+</robot>

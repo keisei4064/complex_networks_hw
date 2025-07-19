@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- モックコンポーネントの設定 -->
-  <!-- The caret ^ indicates to use the outer-scope property (with same
-  name). 
-   The pipe | indicates to use the given fallback if the property is not defined in outer scope. -->
-  <!-- `^`は，外部スコーププロパティ（同名）を使用します -->
-  <!-- `|`は，外部スコープでプロパティが定義されていない場合に指定されたフォールバックを使用します -->
-  <xacro:macro name="rrbot_ros2_control"
+  <xacro:macro name="sushi_bot_ros2_control"
     params="name 
             prefix 
             use_mock_hardware:=false 
@@ -27,12 +21,9 @@
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </xacro:if>
 
-        <!-- 自作のHardware Interface -->
-        <xacro:unless value="${use_mock_hardware or sim_gazebo_classic}">
-          <plugin>controlko_hardware_interface/RRBotHardwareInterface</plugin>
-        </xacro:unless>
       </hardware>
-      <joint name="${prefix}joint1">
+
+      <joint name="${prefix}joint_1">
         <command_interface name="position" />
         <command_interface name="velocity" />
         <state_interface name="position">
@@ -45,7 +36,59 @@
           <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
-      <joint name="${prefix}joint2">
+      <joint name="${prefix}joint_2">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+      <joint name="${prefix}joint_3">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+      <joint name="${prefix}joint_4">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+      <joint name="${prefix}joint_5">
+        <command_interface name="position" />
+        <command_interface name="velocity" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+      <joint name="${prefix}joint_6">
         <command_interface name="position" />
         <command_interface name="velocity" />
         <state_interface name="position">
@@ -59,31 +102,30 @@
         </state_interface>
       </joint>
 
-      <!-- 6軸 Force-Torque-Sensor センサ -->
-      <sensor name="tcp_fts_sensor">
-        <state_interface name="fx" />
-        <state_interface name="fy" />
-        <state_interface name="fz" />
-        <state_interface name="tx" />
-        <state_interface name="ty" />
-        <state_interface name="tz" />
-        <param name="frame_id">tool0</param>
-      </sensor>
+      <!-- Finger Left Joint -->
+      <joint name="${prefix}finger_left_joint">
+        <command_interface name="position" />
+        <command_interface name="effort" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
 
-      <!-- GPIO -->
-      <gpio name="flange_gpios">
-        <state_interface name="digital_input1" />
-        <state_interface name="digital_input2" />
-        <command_interface name="digital_output1">
-          <param name="initial_value">false</param>
-        </command_interface>
-        <!-- <state_interface name="digital_output1" /> -->
-        <command_interface name="digital_output2">
-          <param name="initial_value">false</param>
-        </command_interface>
-        <!-- <state_interface name="digital_output2" /> -->
-      </gpio>
+      <!-- Finger Right Joint -->
+      <joint name="${prefix}finger_right_joint">
+        <command_interface name="position" />
+        <command_interface name="effort" />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
     </ros2_control>
-
   </xacro:macro>
 </robot>
