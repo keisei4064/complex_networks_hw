@@ -7,17 +7,24 @@
 
   <xacro:macro name="stanford_robot" params="prefix parent *origin">
 
+    <joint name="${prefix}base_joint" type="fixed">
+      <!-- ブロック *origin を挿入 -->
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${prefix}base_link" />
+    </joint>
+
     <link name="${prefix}base_link">
       <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.005" rpy="0 0 0" />
         <geometry>
           <box size="0.15 0.15 0.01" />
         </geometry>
         <material name="StoglRobotics/Violet" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.005" rpy="0 0 0" />
         <geometry>
           <box size="0.15 0.15 0.01" />
         </geometry>
@@ -27,59 +34,57 @@
       <material>Gazebo/Orange</material>
     </gazebo>
 
-    <!-- Base link -->
+    <joint name="${prefix}joint_1" type="revolute">
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}link_0" />
+      <origin xyz="0 0 0.01" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1000" velocity="${radians(180)}" lower="-3.1416" upper="3.1416" />
+    </joint>
+
     <link name="${prefix}link_0">
-      <inertial>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
-        <mass value="1.0" />
-        <inertia ixx="0.010" ixy="0.0" ixz="0.0" iyy="0.010" iyz="0.0" izz="0.010" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.15" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.10" length="0.10" />
+          <cylinder radius="0.025" length="0.30" />
         </geometry>
         <material name="Blue" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.15" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.10" length="0.10" />
+          <cylinder radius="0.025" length="0.30" />
         </geometry>
       </collision>
     </link>
-    <!-- Gazebo material for base link -->
     <gazebo reference="${prefix}link_0">
       <material>Gazebo/Orange</material>
     </gazebo>
 
-    <!-- Joint 1: Revolute about Z, between base_dummy and link_0 -->
-    <joint name="${prefix}joint_1" type="revolute">
-      <parent link="${prefix}base_link" />
-      <child link="${prefix}link_0" />
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <limit effort="50.0" velocity="1.0" lower="-3.1416" upper="3.1416" />
+    <!-- Joint 2: Revolute about Y, between link_0 and link_1 -->
+    <joint name="${prefix}joint_2" type="revolute">
+      <parent link="${prefix}link_0" />
+      <child link="${prefix}link_1" />
+      <origin xyz="0 0.05 0.275" rpy="0 ${radians(60)} 0" />
+      <axis xyz="0 1 0" />
+      <limit effort="1000" velocity="${radians(180)}" lower="-3.1416" upper="3.1416" />
     </joint>
 
     <!-- Link 1 -->
     <link name="${prefix}link_1">
-      <inertial>
-        <origin xyz="0 0 0.15" rpy="0 0 0" />
-        <mass value="0.8" />
-        <inertia ixx="0.008" ixy="0.0" ixz="0.0" iyy="0.008" iyz="0.0" izz="0.008" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.15" rpy="0 0 0" />
+        <origin xyz="0 0 0.0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.03" length="0.30" />
+          <box size="0.05 0.05 0.10" />
         </geometry>
         <material name="Green" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.15" rpy="0 0 0" />
+        <origin xyz="0 0.05 0.0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.03" length="0.30" />
+          <box size="0.05 0.05 0.10" />
         </geometry>
       </collision>
     </link>
@@ -87,33 +92,29 @@
       <material>Gazebo/Blue</material>
     </gazebo>
 
-    <!-- Joint 2: Revolute about Y, between link_0 and link_1 -->
-    <joint name="${prefix}joint_2" type="revolute">
-      <parent link="${prefix}link_0" />
-      <child link="${prefix}link_1" />
-      <origin xyz="0 0 0.10" rpy="0 0 0" />
-      <axis xyz="0 1 0" />
-      <limit effort="50.0" velocity="1.0" lower="-3.1416" upper="3.1416" />
+    <!-- Joint 3: 直動リンク: Prismatic -->
+    <joint name="${prefix}joint_3" type="prismatic">
+      <parent link="${prefix}link_1" />
+      <child link="${prefix}link_2" />
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1000.0" velocity="0.3" lower="-0.2" upper="0.2" />
     </joint>
 
     <!-- Link 2 -->
     <link name="${prefix}link_2">
-      <inertial>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
-        <mass value="0.6" />
-        <inertia ixx="0.006" ixy="0.0" ixz="0.0" iyy="0.006" iyz="0.0" izz="0.006" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.03" length="0.20" />
+          <box size="0.03 0.03 0.50" />
         </geometry>
         <material name="Red" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0.0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.03" length="0.20" />
+          <box size="0.03 0.03 0.50" />
         </geometry>
       </collision>
     </link>
@@ -121,33 +122,29 @@
       <material>Gazebo/Yellow</material>
     </gazebo>
 
-    <!-- Joint 3: Prismatic along Z, between link_1 and link_2 -->
-    <joint name="${prefix}joint_3" type="prismatic">
-      <parent link="${prefix}link_1" />
-      <child link="${prefix}link_2" />
-      <origin xyz="0 0 0.30" rpy="0 0 0" />
+    <!-- Joint 4: Revolute about Z, between link_2 and link_3 -->
+    <joint name="${prefix}joint_4" type="revolute">
+      <parent link="${prefix}link_2" />
+      <child link="${prefix}link_3" />
+      <origin xyz="0 0 0.25" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit effort="100.0" velocity="0.2" lower="0.0" upper="0.40" />
+      <limit effort="1000" velocity="${radians(180)}" lower="-3.1416" upper="3.1416" />
     </joint>
 
     <!-- Link 3 -->
     <link name="${prefix}link_3">
-      <inertial>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
-        <mass value="0.4" />
-        <inertia ixx="0.004" ixy="0.0" ixz="0.0" iyy="0.004" iyz="0.0" izz="0.004" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0.02" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.025" length="0.20" />
+          <cylinder radius="0.025" length="0.04" />
         </geometry>
         <material name="Gray" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0.02" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.025" length="0.20" />
+          <cylinder radius="0.025" length="0.04" />
         </geometry>
       </collision>
     </link>
@@ -155,33 +152,29 @@
       <material>Gazebo/Green</material>
     </gazebo>
 
-    <!-- Joint 4: Revolute about Z, between link_2 and link_3 -->
-    <joint name="${prefix}joint_4" type="revolute">
-      <parent link="${prefix}link_2" />
-      <child link="${prefix}link_3" />
-      <origin xyz="0 0 0.20" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <limit effort="50.0" velocity="1.0" lower="-3.1416" upper="3.1416" />
+    <!-- Joint 5: Revolute about Y, between link_3 and link_4 -->
+    <joint name="${prefix}joint_5" type="revolute">
+      <parent link="${prefix}link_3" />
+      <child link="${prefix}link_4" />
+      <origin xyz="0 0 0.04" rpy="0 ${radians(90)} 0" />
+      <axis xyz="0 1 0" />
+      <limit effort="1000" velocity="${radians(180)}" lower="-3.1416" upper="3.1416" />
     </joint>
 
     <!-- Link 4 -->
     <link name="${prefix}link_4">
-      <inertial>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
-        <mass value="0.3" />
-        <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0.02" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.025" length="0.20" />
+          <box size="0.03 0.02 0.04" />
         </geometry>
         <material name="White" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <origin xyz="0 0 0.02" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.025" length="0.20" />
+          <box size="0.03 0.02 0.04" />
         </geometry>
       </collision>
     </link>
@@ -189,33 +182,29 @@
       <material>Gazebo/Red</material>
     </gazebo>
 
-    <!-- Joint 5: Revolute about Y, between link_3 and link_4 -->
-    <joint name="${prefix}joint_5" type="revolute">
-      <parent link="${prefix}link_3" />
-      <child link="${prefix}link_4" />
-      <origin xyz="0 0 0.20" rpy="0 0 0" />
-      <axis xyz="0 1 0" />
-      <limit effort="50.0" velocity="1.0" lower="-3.1416" upper="3.1416" />
+    <!-- Joint 6: Revolute (wrist), between link_4 and flange -->
+    <joint name="${prefix}joint_6" type="revolute">
+      <parent link="${prefix}link_4" />
+      <child link="${prefix}link_5" />
+      <origin xyz="0 0 0.04" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit effort="30.0" velocity="${radians(180)}" lower="-3.1416" upper="3.1416" />
     </joint>
 
     <!-- Flange Link (Link 5) -->
     <link name="${prefix}link_5">
-      <inertial>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
-        <mass value="0.2" />
-        <inertia ixx="0.002" ixy="0.0" ixz="0.0" iyy="0.002" iyz="0.0" izz="0.002" />
-      </inertial>
+      <xacro:default_inertial />
       <visual>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.005" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.02" length="0.10" />
+          <cylinder radius="0.025" length="0.01" />
         </geometry>
         <material name="Black" />
       </visual>
       <collision>
-        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <origin xyz="0 0 0.005" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.02" length="0.10" />
+          <cylinder radius="0.025" length="0.01" />
         </geometry>
       </collision>
     </link>
@@ -223,18 +212,9 @@
       <material>Gazebo/White</material>
     </gazebo>
 
-    <!-- Joint 6: Revolute (wrist), between link_4 and flange -->
-    <joint name="${prefix}joint_6" type="revolute">
-      <parent link="${prefix}link_4" />
-      <child link="${prefix}flange_link" />
-      <origin xyz="0 0 0.20" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
-      <limit effort="30.0" velocity="1.0" lower="-3.1416" upper="3.1416" />
-    </joint>
-
     <!-- Flange Link -->
     <link name="${prefix}flange_link">
-      <inertial>
+      <!-- <inertial>
         <origin xyz="0 0 0.025" rpy="0 0 0" />
         <mass value="0.1" />
         <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
@@ -251,7 +231,7 @@
         <geometry>
           <cylinder radius="0.04" length="0.05" />
         </geometry>
-      </collision>
+      </collision> -->
     </link>
     <gazebo reference="${prefix}flange_link">
       <material>Gazebo/Gray</material>
