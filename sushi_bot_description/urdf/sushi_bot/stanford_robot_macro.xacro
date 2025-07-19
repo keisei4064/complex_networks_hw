@@ -16,7 +16,7 @@
         <geometry>
           <box size="0.15 0.15 0.01" />
         </geometry>
-        <material name="Gray" />
+        <material name="Grey" />
       </visual>
       <collision>
         <origin xyz="0 0 0.005" rpy="0 0 0" />
@@ -134,7 +134,7 @@
         <geometry>
           <cylinder radius="0.025" length="0.04" />
         </geometry>
-        <material name="Gray" />
+        <material name="Grey" />
       </visual>
       <collision>
         <origin xyz="0 0 0.02" rpy="0 0 0" />
@@ -194,7 +194,7 @@
         <geometry>
           <cylinder radius="0.025" length="0.01" />
         </geometry>
-        <material name="Gray" />
+        <material name="Grey" />
       </visual>
       <collision>
         <origin xyz="0 0 0.005" rpy="0 0 0" />

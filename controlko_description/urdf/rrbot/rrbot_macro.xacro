@@ -72,7 +72,7 @@
       </collision>
     </link>
     <gazebo reference="${prefix}link2">
-      <material>Gazebo/Gray</material>
+      <material>Gazebo/Grey</material>
     </gazebo>
 
     <!-- 座標マーカー的な ~~~ -->
