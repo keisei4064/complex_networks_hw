@@ -4,7 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /RobotModel1
         - /RobotModel1/Description Topic1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.6264705657958984
     Tree Height: 620
   - Class: rviz_common/Selection
@@ -158,7 +161,7 @@ Visualization Manager:
         flange:
           Value: false
         grasp_point:
-          Value: true
+          Value: false
         gripper_base:
           Value: false
         link_0:
@@ -172,7 +175,7 @@ Visualization Manager:
         link_4:
           Value: false
         link_5:
-          Value: false
+          Value: true
         tool0:
           Value: false
         world:
@@ -251,25 +254,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.2711516618728638
+      Distance: 0.8379040956497192
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.004752367734909058
-        Y: -0.10026119649410248
-        Z: 0.017687540501356125
+        X: -0.016416843980550766
+        Y: -0.08839733898639679
+        Z: 0.059259284287691116
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.640398383140564
+      Pitch: 0.44539856910705566
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.7053975462913513
+      Yaw: 0.7403975129127502
     Saved: ~
 Window Geometry:
   Displays:
@@ -287,5 +290,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 948
-  X: -32
+  X: 762
   Y: -32

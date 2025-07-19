@@ -47,7 +47,7 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "robot_controller",
+            "joint_controller",
             default_value="joint_trajectory_controller",
             choices=["forward_position_controller", "joint_trajectory_controller"],
             description="Robot controller to start.",
@@ -61,7 +61,7 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     # use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     # mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
-    robot_controller = LaunchConfiguration("robot_controller")
+    joint_controller = LaunchConfiguration("joint_controller")
 
     robot_controllers = PathJoinSubstitution(
         [FindPackageShare("sushi_bot_bringup"), "config", controllers_file]
@@ -119,7 +119,7 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
 
-    robot_controllers = [robot_controller]
+    robot_controllers = [joint_controller, "gripper_controller"]
     robot_controller_spawners = []
     for controller in robot_controllers:
         robot_controller_spawners += [

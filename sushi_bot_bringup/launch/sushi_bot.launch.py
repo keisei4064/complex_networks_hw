@@ -1,7 +1,12 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, RegisterEventHandler, TimerAction
 from launch.event_handlers import OnProcessExit, OnProcessStart
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
@@ -65,7 +70,7 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "robot_controller",
+            "joint_controller",
             # default_value="forward_position_controller",
             default_value="joint_trajectory_controller",
             choices=[
@@ -84,14 +89,16 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
-    robot_controller = LaunchConfiguration("robot_controller")
+    joint_controller = LaunchConfiguration("joint_controller")
 
     # xacro経由でURDFを読み込む
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package), "urdf", description_file]),
+            PathJoinSubstitution(
+                [FindPackageShare(description_package), "urdf", description_file]
+            ),
             " ",
             # ここで引数を渡す
             "prefix:=",
@@ -112,10 +119,13 @@ def generate_launch_description():
             FindPackageShare(runtime_config_package),
             "config",
             controllers_file,
-        ]    )
+        ]
+    )
 
     # rviz
-    rviz_config_file = PathJoinSubstitution([FindPackageShare(description_package), "rviz", "sushi_bot.rviz"])
+    rviz_config_file = PathJoinSubstitution(
+        [FindPackageShare(description_package), "rviz", "sushi_bot.rviz"]
+    )
 
     # controller_managerの起動
     control_node = Node(
@@ -141,7 +151,10 @@ def generate_launch_description():
     )
 
     # controllerの起動
-    robot_controllers = [robot_controller]  # 複数起動に対応（ここでは単体）
+    robot_controllers = [
+        joint_controller,
+        "gripper_controller",
+    ]  # 複数起動に対応
     robot_controller_spawners = []
     for controller in robot_controllers:
         robot_controller_spawners += [
@@ -174,15 +187,19 @@ def generate_launch_description():
     # 遅延実行設定 ---
 
     # ros2_control_nodeが起動してからjoint_state_broadcasterを起動する
-    delay_joint_state_broadcaster_spawner_after_ros2_control_node = RegisterEventHandler(
-        event_handler=OnProcessStart(
-            target_action=control_node,
-            on_start=[
-                TimerAction(
-                    period=1.0,
-                    actions=[joint_state_broadcaster_spawner],  # 1秒後にjoint_state_broadcasterを起動
-                )
-            ],
+    delay_joint_state_broadcaster_spawner_after_ros2_control_node = (
+        RegisterEventHandler(
+            event_handler=OnProcessStart(
+                target_action=control_node,
+                on_start=[
+                    TimerAction(
+                        period=1.0,
+                        actions=[
+                            joint_state_broadcaster_spawner
+                        ],  # 1秒後にjoint_state_broadcasterを起動
+                    )
+                ],
+            )
         )
     )
 

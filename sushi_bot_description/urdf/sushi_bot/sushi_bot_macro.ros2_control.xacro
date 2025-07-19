@@ -113,7 +113,7 @@
           <param name="initial_value">0.0</param>
         </state_interface>
         <state_interface name="effort">
-          <param name="initial_value">0.0</param>
+          <param name="initial_value">1.0</param>
         </state_interface>
       </joint>
 
@@ -128,7 +128,7 @@
           <param name="initial_value">0.0</param>
         </state_interface>
         <state_interface name="effort">
-          <param name="initial_value">0.0</param>
+          <param name="initial_value">1.0</param>
         </state_interface>
       </joint>
 
