@@ -16,14 +16,6 @@ def generate_launch_description():
     declared_arguments = []
     declared_arguments.append(
         DeclareLaunchArgument(
-            "runtime_config_package",
-            default_value="sushi_bot_bringup",
-            description='Package with the controller\'s configuration in "config" folder. \
-        Usually the argument is not set, it enables use of a custom setup.',
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             "controllers_file",
             default_value="sushi_bot_controllers.yaml",
             description="YAML file with the controllers configuration.",
@@ -63,7 +55,6 @@ def generate_launch_description():
     )
 
     # 引数初期化
-    runtime_config_package = LaunchConfiguration("runtime_config_package")
     controllers_file = LaunchConfiguration("controllers_file")
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
@@ -72,7 +63,9 @@ def generate_launch_description():
     # mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
     robot_controller = LaunchConfiguration("robot_controller")
 
-    robot_controllers = PathJoinSubstitution([FindPackageShare(runtime_config_package), "config", controllers_file])
+    robot_controllers = PathJoinSubstitution(
+        [FindPackageShare("sushi_bot_bringup"), "config", controllers_file]
+    )
     rviz_config_file = PathJoinSubstitution([FindPackageShare(description_package), "rviz", "sushi_bot.rviz"])
 
     # Get URDF via xacro
