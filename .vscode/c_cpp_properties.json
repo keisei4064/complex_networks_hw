@@ -11,7 +11,8 @@
                 "/usr/include/sdformat-9.7",
                 "/usr/include/**",
                 "/opt/ros/humble/include/rclcpp",
-                "/opt/ros/humble/include/rcl"
+                "/opt/ros/humble/include/rcl",
+                "${workspaceFolder}/sushi_bot_task_executor/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
