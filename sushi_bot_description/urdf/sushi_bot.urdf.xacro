@@ -7,27 +7,18 @@
   <xacro:arg name="sim_gazebo_classic" default="false" />
   <xacro:arg name="simulation_controllers" default="" />
 
-  <!-- <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.xacro" />
-  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/puma_robot_macro.xacro" /> -->
+  <xacro:include filename="$(find sushi_bot_description)/urdf/common.xacro" />
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/stanford_robot_macro.xacro" />
-  <!-- <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.ros2_control.xacro" /> -->
+  <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/simple_gripper_macro.xacro" />
 
   <!-- "world"に固定されたリンクを作る -->
   <link name="world" />
 
   <!-- ロボットのマクロを読み込む -->
-  <!-- <xacro:sushi_bot prefix="$(arg prefix)" parent="world">
-    <origin xyz="0 0 0" rpy="0 0 0" /> 
-  </xacro:sushi_bot> -->
-
   <xacro:stanford_robot prefix="$(arg prefix)" parent="world">
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:stanford_robot>
-
-  <!-- <xacro:puma_robot prefix="$(arg prefix)" parent="world">
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:puma_robot> -->
-
+  <xacro:simple_gripper prefix="$(arg prefix)" parent="$(arg prefix)tool0" />
 
   <!-- コントローラーのマクロを読み込む -->
   <!-- <xacro:sushi_bot_ros2_control
