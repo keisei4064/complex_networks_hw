@@ -44,7 +44,7 @@
             </friction>
             <bounce/>
           </surface>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
         </collision>
         <visual name='visual'>
           <cast_shadows>0</cast_shadows>
@@ -91,48 +91,78 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>307 726000000</sim_time>
-      <real_time>113 77705090</real_time>
-      <wall_time>1752922686 860774747</wall_time>
-      <iterations>112360</iterations>
+      <sim_time>1124 688000000</sim_time>
+      <real_time>178 952104243</real_time>
+      <wall_time>1752928197 483731343</wall_time>
+      <iterations>177833</iterations>
       <model name='Room_Essentials_Salad_Plate_Turquoise'>
-        <pose>0.074776 -0.437247 -0.00068 -0.008865 0.01847 -0.000273</pose>
-        <scale>1 1 1</scale>
+        <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
+        <scale>0.513601 0.513601 0.513601</scale>
         <link name='link_0'>
-          <pose>0.074776 -0.437247 -0.00068 -0.008865 0.01847 -0.000273</pose>
+          <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi'>
+        <pose>0.302571 -0.075118 0.020795 -0.022838 -0.036502 0.012687</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.302571 -0.075118 0.020795 -0.022838 -0.036502 0.012687</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.01132 0.015206 -0.017433 -1.29821 -0.969059 0.20019</acceleration>
+          <wrench>-0.000678 0.000911 -0.001044 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi_clone'>
+        <pose>0.303892 0.003676 0.020849 0.0023 -0.027173 0.003839</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.303892 0.003676 0.020849 0.0023 -0.027173 0.003839</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.42319 -0.034303 -1.18502 -2.9313 0.960767 -0.168338</acceleration>
+          <wrench>-0.025349 -0.002055 -0.070982 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi_clone_0'>
+        <pose>0.301518 0.074717 0.022604 0.062188 -0.017672 0.018837</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.301518 0.074717 0.022604 0.062188 -0.017672 0.018837</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.017434 -0.047318 -0.023194 -2.18738 1.51831 -1.19275</acceleration>
+          <wrench>0.001044 -0.002834 -0.001389 0 -0 0</wrench>
         </link>
       </model>
       <model name='Sushi_Mat'>
-        <pose>0.236258 -0.017269 -0.000935 -0.00256 0.015493 -1e-05</pose>
+        <pose>0.298373 0 -0.000925 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.236258 -0.017269 -0.000935 -0.00256 0.015493 -1e-05</pose>
+          <pose>0.298373 0 -0.000925 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring'>
-        <pose>-0.236056 -0.432536 -0.000971 -0.000786 0.012667 -0.000245</pose>
-        <scale>1 1 1</scale>
+        <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
+        <scale>0.396968 0.396968 0.396968</scale>
         <link name='link_0'>
-          <pose>-0.236056 -0.432536 -0.000971 -0.000786 0.012667 -0.000245</pose>
+          <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='Threshold_Dinner_Plate_Square_Rim_White_Porcelain'>
-        <pose>-0.561993 -0.425566 -0.000674 -0.002295 -0.01322 -9.5e-05</pose>
-        <scale>1 1 1</scale>
+        <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
+        <scale>0.323308 0.323308 0.323308</scale>
         <link name='link_0'>
-          <pose>-0.561993 -0.425566 -0.000674 -0.002295 -0.01322 -9.5e-05</pose>
+          <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -146,27 +176,28 @@
         </link>
       </model>
       <model name='unit_box'>
-        <pose>0.117255 0.779163 0.499995 -1e-05 -0 -0</pose>
-        <scale>1 1 1</scale>
+        <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
+        <scale>1 0.191017 0.146743</scale>
         <link name='link'>
-          <pose>0.117255 0.779163 0.499995 -1e-05 -0 -0</pose>
+          <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.004709 0.011055 -9.78158 -0.022108 0.009414 1e-06</acceleration>
-          <wrench>0.004709 0.011055 -9.78158 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
+        <pose>0 0 5 0 -0 0</pose>
       </light>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-3.85954 0.872544 3.16205 -0 0.595644 -0.347812</pose>
+        <pose>1.00663 0.4932 1.07503 0 0.741798 -2.74298</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
     <model name='Sushi_Mat'>
+      <static>1</static>
       <link name='link_0'>
         <visual name='visual'>
           <geometry>
@@ -181,7 +212,7 @@
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Sushi_Mat/meshes/model.obj</uri>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
           <surface>
             <contact>
               <ode/>
@@ -214,6 +245,7 @@
       <pose>0.236264 -0.017268 0 0 -0 0</pose>
     </model>
     <model name='unit_box'>
+      <static>1</static>
       <pose>0.117255 0.779158 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
@@ -231,10 +263,10 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>1 1 1</size>
+              <size>1 0.999995 1</size>
             </box>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
           <surface>
             <contact>
               <ode/>
@@ -251,12 +283,12 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>1 1 1</size>
+              <size>1 0.999995 1</size>
             </box>
           </geometry>
           <material>
             <script>
-              <name>Gazebo/Grey</name>
+              <name>Gazebo/WhiteGlow"</name>
               <uri>file://media/materials/scripts/gazebo.material</uri>
             </script>
           </material>
@@ -267,11 +299,13 @@
       </link>
     </model>
     <model name='Room_Essentials_Salad_Plate_Turquoise'>
+      <static>1</static>
       <link name='link_0'>
         <visual name='visual'>
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Room_Essentials_Salad_Plate_Turquoise/meshes/model.obj</uri>
+              <scale>0.513601 0.513601 0.513601</scale>
             </mesh>
           </geometry>
         </visual>
@@ -279,9 +313,10 @@
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Room_Essentials_Salad_Plate_Turquoise/meshes/model.obj</uri>
+              <scale>0.513601 0.513601 0.513601</scale>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
           <surface>
             <contact>
               <ode/>
@@ -312,13 +347,16 @@
         <kinematic>0</kinematic>
       </link>
       <pose>0.074788 -0.437242 0 0 -0 0</pose>
+      <scale>0.8 0.8 0.8</scale>
     </model>
     <model name='Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring'>
+      <static>1</static>
       <link name='link_0'>
         <visual name='visual'>
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring/meshes/model.obj</uri>
+              <scale>0.396968 0.396968 0.396968</scale>
             </mesh>
           </geometry>
         </visual>
@@ -326,9 +364,10 @@
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring/meshes/model.obj</uri>
+              <scale>0.396968 0.396968 0.396968</scale>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
           <surface>
             <contact>
               <ode/>
@@ -361,11 +400,13 @@
       <pose>-0.236051 -0.432535 0 0 -0 0</pose>
     </model>
     <model name='Threshold_Dinner_Plate_Square_Rim_White_Porcelain'>
+      <static>1</static>
       <link name='link_0'>
         <visual name='visual'>
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Threshold_Dinner_Plate_Square_Rim_White_Porcelain/meshes/model.obj</uri>
+              <scale>0.323308 0.323308 0.323308</scale>
             </mesh>
           </geometry>
         </visual>
@@ -373,9 +414,10 @@
           <geometry>
             <mesh>
               <uri>/home/wsl_ubuntu/colcon_ws/install/sushi_bot_worlds/share/sushi_bot_worlds/models/Threshold_Dinner_Plate_Square_Rim_White_Porcelain/meshes/model.obj</uri>
+              <scale>0.323308 0.323308 0.323308</scale>
             </mesh>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>20</max_contacts>
           <surface>
             <contact>
               <ode/>
@@ -406,6 +448,186 @@
         <kinematic>0</kinematic>
       </link>
       <pose>-0.562001 -0.425563 0 0 -0 0</pose>
+    </model>
+    <model name='SalmonSushi'>
+      <static>0</static>
+      <link name='link'>
+        <inertial>
+          <mass>0.0599</mass>
+          <inertia>
+            <ixx>0.000302896</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000302896</iyy>
+            <iyz>0</iyz>
+            <izz>3.28764e-05</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.075 0.025 0.025</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <poissons_ratio>0.35</poissons_ratio>
+              <elastic_modulus>3.10264e+09</elastic_modulus>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <torsional>
+                <coefficient>1</coefficient>
+                <use_patch_radius>0</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>20</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://SalmonSushi/meshes/model.dae</uri>
+              <scale>3 3 3</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-0.222791 -0.045462 0 0 -0 0</pose>
+    </model>
+    <model name='SalmonSushi_clone'>
+      <static>0</static>
+      <link name='link'>
+        <inertial>
+          <mass>0.0599</mass>
+          <inertia>
+            <ixx>0.000302896</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000302896</iyy>
+            <iyz>0</iyz>
+            <izz>3.28764e-05</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.075 0.025 0.025</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <poissons_ratio>0.35</poissons_ratio>
+              <elastic_modulus>3.10264e+09</elastic_modulus>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <torsional>
+                <coefficient>1</coefficient>
+                <use_patch_radius>0</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>20</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://SalmonSushi/meshes/model.dae</uri>
+              <scale>3 3 3</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>0.304211 0.020888 0.053128 0 -0 0.002342</pose>
+    </model>
+    <model name='SalmonSushi_clone_0'>
+      <static>0</static>
+      <link name='link'>
+        <inertial>
+          <mass>0.0599</mass>
+          <inertia>
+            <ixx>0.000302896</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000302896</iyy>
+            <iyz>0</iyz>
+            <izz>3.28764e-05</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.075 0.025 0.025</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <poissons_ratio>0.35</poissons_ratio>
+              <elastic_modulus>3.10264e+09</elastic_modulus>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <torsional>
+                <coefficient>1</coefficient>
+                <use_patch_radius>0</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>20</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://SalmonSushi/meshes/model.dae</uri>
+              <scale>3 3 3</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>0.309685 0.095932 0.053128 0 -0 0.002342</pose>
     </model>
   </world>
 </sdf>
