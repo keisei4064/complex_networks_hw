@@ -12,7 +12,7 @@
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/simple_gripper_macro.xacro" />
   <xacro:include filename="$(find sushi_bot_description)/urdf/sushi_bot/sushi_bot_macro.ros2_control.xacro" />
 
-  <!-- "world"に固定されたリンクを作る -->
+  <!-- worldに固定されたリンクを作る -->
   <link name="world" />
 
   <!-- ロボットのマクロを読み込む -->

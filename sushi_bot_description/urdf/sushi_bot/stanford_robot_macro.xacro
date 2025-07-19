@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- ※ *がついたパラメータはブロックパラメータ -->
 
   <xacro:macro name="stanford_robot" params="prefix parent *origin">
 
     <joint name="${prefix}base_joint" type="fixed">
-      <!-- ブロック *origin を挿入 -->
       <xacro:insert_block name="origin" />
       <parent link="${parent}" />
       <child link="${prefix}base_link" />
@@ -59,7 +57,7 @@
       <material>Gazebo/Orange</material>
     </gazebo>
 
-    <!-- Joint 2: Revolute about Y, between link_0 and link_1 -->
+    <!-- Joint 2 Revolute about Y, between link_0 and link_1 -->
     <joint name="${prefix}joint_2" type="revolute">
       <parent link="${prefix}link_0" />
       <child link="${prefix}link_1" />
@@ -89,7 +87,7 @@
       <material>Gazebo/Blue</material>
     </gazebo>
 
-    <!-- Joint 3: 直動リンク: Prismatic -->
+    <!-- Joint 3 直動リンク Prismatic -->
     <joint name="${prefix}joint_3" type="prismatic">
       <parent link="${prefix}link_1" />
       <child link="${prefix}link_2" />
@@ -119,7 +117,7 @@
       <material>Gazebo/Yellow</material>
     </gazebo>
 
-    <!-- Joint 4: Revolute about Z, between link_2 and link_3 -->
+    <!-- Joint 4 Revolute about Z, between link_2 and link_3 -->
     <joint name="${prefix}joint_4" type="revolute">
       <parent link="${prefix}link_2" />
       <child link="${prefix}link_3" />
@@ -149,7 +147,7 @@
       <material>Gazebo/Green</material>
     </gazebo>
 
-    <!-- Joint 5: Revolute about Y, between link_3 and link_4 -->
+    <!-- Joint 5 Revolute about Y, between link_3 and link_4 -->
     <joint name="${prefix}joint_5" type="revolute">
       <parent link="${prefix}link_3" />
       <child link="${prefix}link_4" />
@@ -179,7 +177,7 @@
       <material>Gazebo/Red</material>
     </gazebo>
 
-    <!-- Joint 6: Revolute (wrist), between link_4 and flange -->
+    <!-- Joint 6 Revolute (wrist), between link_4 and flange -->
     <joint name="${prefix}joint_6" type="revolute">
       <parent link="${prefix}link_4" />
       <child link="${prefix}link_5" />
