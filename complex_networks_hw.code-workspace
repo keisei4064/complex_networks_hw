@@ -122,10 +122,12 @@
 		"commentTranslate.hover.enabled": true,
 		"urdf-visualizer.packages": {
 			"controlko_description": "${workspaceFolder}/src/complex_networks_hw/controlko_description",
+			"sushi_bot_description": "${workspaceFolder}/src/complex_networks_hw/sushi_bot_description",
 		},
 		"[xml]": {
 			"editor.tabSize": 2
 		},
 		"git.detectSubmodulesLimit": 48,
+		"github.copilot.chat.codeGeneration.useInstructionFiles": true,
 	}
 }

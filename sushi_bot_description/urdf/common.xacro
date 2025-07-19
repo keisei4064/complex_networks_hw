@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="default_inertial">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <!-- If unsure what to put, a matrix with ixx/iyy/izz=1e-3 or smaller is often a reasonable
+      default for a mid-sized link (it corresponds to a box of 0.1 m side length with a mass of 0.6
+      kg).  -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+        iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </xacro:macro>
+
+  <material name="StoglRobotics/Violet">
+    <color rgba="${102/255} ${46/255} ${145/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="StoglRobotics/DarkGrey">
+    <color rgba="${51/255} ${51/255} ${51/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="StoglRobotics/LightGrey">
+    <color rgba="${194/255} ${194/255} ${194/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Blue">
+    <color rgba="${0/255} ${0/255} ${194/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Green">
+    <color rgba="${0/255} ${194/255} ${0/255} 1.0" />
+    <ambient>0 1 0 1</ambient>
+    <diffuse>0 1 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Red">
+    <color rgba="${194/255} ${0/255} ${0/255} 1.0" />
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Gray">
+    <color rgba="${128/255} ${128/255} ${128/255} 1.0" />
+    <ambient>0.5 0.5 0.5 1</ambient>
+    <diffuse>0.5 0.5 0.5 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="White">
+    <color rgba="1 1 1 1.0" />
+    <ambient>1 1 1 1</ambient>
+    <diffuse>1 1 1 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Black">
+    <color rgba="0 0 0 1.0" />
+    <ambient>0 0 0 1</ambient>
+    <diffuse>0 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+  <material name="Cyan">
+    <color rgba="${0/255} ${255/255} ${255/255} 1.0" />
+    <ambient>0 1 1 1</ambient>
+    <diffuse>0 1 1 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+  </material>
+
+
+</robot>
