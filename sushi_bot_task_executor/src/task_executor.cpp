@@ -68,7 +68,9 @@ private:
     MoveJoints(NEUTRAL_POSITION);
     rclcpp::sleep_for(100ms);
 
-    RCLCPP_INFO(this->get_logger(), "Step 2: Pick Salmon Sushi");
+    RCLCPP_INFO(this->get_logger(), "Step 2: Pick Salmon Sushi 1");
+    MoveJoints({0.06283, 1.320, 0.0520, 0.0, 1.760, 0.0});
+    rclcpp::sleep_for(100ms);
     MoveJoints({0.06283, 2.0734, 0.0520, 0.0, 1.005, 0.0});
     rclcpp::sleep_for(100ms);
     PickObject("SalmonSushi_2");
@@ -78,8 +80,24 @@ private:
     rclcpp::sleep_for(100ms);
     MoveJoints({1.85, 1.633632, 0.1, 0.0, 1.445136, -0.439818});
     DropObject();
-
     MoveJoints({1.85, 1.320, 0.116, 0.0, 1.760, 0.0});
+
+    MoveJoints(NEUTRAL_POSITION);
+
+    RCLCPP_INFO(this->get_logger(), "Step 3: Pick Salmon Sushi 2");
+    MoveJoints({-0.18, 1.320, 0.044000, 0.0, 1.760, -0.188486});
+    rclcpp::sleep_for(100ms);
+    MoveJoints({-0.18, 2.110000, 0.044000, 0.0, 0.942480, -0.188486});
+    rclcpp::sleep_for(100ms);
+    PickObject("SalmonSushi_0");
+    MoveJoints({-0.18, 1.320, 0.044000, 0.0,  1.760, -0.188486});
+    rclcpp::sleep_for(100ms);
+    MoveJoints({1.382304, 1.320000, 0.080000, 0.0, 1.760, -0.188486});
+    rclcpp::sleep_for(100ms);
+    MoveJoints({1.382304, 1.634160, 0.076000, 0.0, 1.508672, -0.816806});
+    DropObject();
+    MoveJoints({1.382304, 1.320000, 0.080000, 0.0, 1.760, -0.188486});
+    rclcpp::sleep_for(100ms);
 
     MoveJoints(NEUTRAL_POSITION);
 
