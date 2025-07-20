@@ -8,13 +8,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
 find_package(sushi_bot_interfaces REQUIRED)
+find_package(control_msgs REQUIRED)
 
 add_executable(task_executor src/task_executor.cpp)
 target_include_directories(task_executor PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(task_executor rclcpp sushi_bot_interfaces)
+ament_target_dependencies(task_executor rclcpp rclcpp_action sushi_bot_interfaces control_msgs)
 
 install(
   DIRECTORY launch
