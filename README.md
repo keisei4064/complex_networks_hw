@@ -4,6 +4,15 @@
 
 ## 起動
 
+### デモ
+
+Joint Known
+
+```bash
+ros2 launch sushi_bot_worlds launch_world_with_sushi_bot.launch.py
+ros2 run sushi_bot_task_executor task_executor
+```
+
 ### rvizシミュレーション
 
 ```bash
