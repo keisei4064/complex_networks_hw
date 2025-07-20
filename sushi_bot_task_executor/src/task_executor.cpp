@@ -10,15 +10,24 @@
 
 using namespace std::chrono_literals;
 
+constexpr double PI = 3.14159265358979323846;
+
+constexpr double rad2deg(double rad) noexcept
+{
+  return rad * 180.0 / PI;
+}
+
+constexpr double deg2rad(double deg) noexcept
+{
+  return deg * PI / 180.0;
+}
+
 class TaskExecutorNode : public rclcpp::Node
 {
 public:
   TaskExecutorNode()
       : Node("task_executor_node", "sushi_bot_task_executor")
   {
-    update_timer_ = this->create_wall_timer(
-        10ms,
-        std::bind(&TaskExecutorNode::Update, this));
     pick_client_ = this->create_client<sushi_bot_interfaces::srv::PickObject>(
         "/sushi_bot_gazebo_plugins/pick_and_drop/pick_object");
     drop_client_ = this->create_client<sushi_bot_interfaces::srv::DropObject>(
@@ -45,24 +54,36 @@ public:
     RCLCPP_INFO(this->get_logger(), "Services are available.");
 
     RCLCPP_INFO(this->get_logger(), "Task Executor Node started.");
+
+    DoTask();
+
+    rclcpp::shutdown();
   }
 
 private:
-  void Update()
+  void DoTask()
   {
-    if (task_queue_.empty())
-    {
-      RCLCPP_INFO(this->get_logger(), "No tasks in the queue.");
-      rclcpp::shutdown();
-      return;
-    }
+    RCLCPP_INFO(this->get_logger(), "Executing task...");
+    RCLCPP_INFO(this->get_logger(), "Step 1: Go to Neutral Position");
+    MoveJoints(NEUTRAL_POSITION);
+    rclcpp::sleep_for(100ms);
 
-    // 先頭のタスク（関数）を実行，完了したらキューから削除
-    auto &task = task_queue_.front();
-    if (task())
-    {
-      task_queue_.pop();
-    }
+    RCLCPP_INFO(this->get_logger(), "Step 2: Pick Salmon Sushi");
+    MoveJoints({0.06283, 2.0734, 0.0520, 0.0, 1.005, 0.0});
+    rclcpp::sleep_for(100ms);
+    PickObject("SalmonSushi_2");
+    MoveJoints({0.06283, 1.320, 0.0520, 0.0, 1.760, 0.0});
+    rclcpp::sleep_for(100ms);
+    MoveJoints({1.85, 1.320, 0.116, 0.0, 1.760, 0.0});
+    rclcpp::sleep_for(100ms);
+    MoveJoints({1.85, 1.633632, 0.1, 0.0, 1.445136, -0.439818});
+    DropObject();
+
+    MoveJoints({1.85, 1.320, 0.116, 0.0, 1.760, 0.0});
+
+    MoveJoints(NEUTRAL_POSITION);
+
+    RCLCPP_INFO(this->get_logger(), "All tasks completed successfully.");
   }
 
   void PickObject(std::string object_name)
@@ -71,10 +92,15 @@ private:
     request->object_name = object_name;
 
     auto future = pick_client_->async_send_request(request);
-    rclcpp::spin_until_future_complete(this->get_node_base_interface(), future);
-    if (future.get() == nullptr)
+    auto ret = rclcpp::spin_until_future_complete(
+        this->get_node_base_interface(), // Node を spin するために渡す
+        future,
+        std::chrono::seconds(2) // タイムアウト（任意）
+    );
+
+    if (ret != rclcpp::FutureReturnCode::SUCCESS)
     {
-      RCLCPP_ERROR(this->get_logger(), "Failed to call PickObject service.");
+      RCLCPP_ERROR(this->get_logger(), "service call failed or timed out");
       return;
     }
 
@@ -91,11 +117,15 @@ private:
   void DropObject()
   {
     auto future = drop_client_->async_send_request(std::make_shared<sushi_bot_interfaces::srv::DropObject::Request>());
+    auto ret = rclcpp::spin_until_future_complete(
+        this->get_node_base_interface(), // Node を spin するために渡す
+        future,
+        std::chrono::seconds(2) // タイムアウト（任意）
+    );
 
-    rclcpp::spin_until_future_complete(this->get_node_base_interface(), future);
-    if (future.get() == nullptr)
+    if (ret != rclcpp::FutureReturnCode::SUCCESS)
     {
-      RCLCPP_ERROR(this->get_logger(), "Failed to call DropObject service.");
+      RCLCPP_ERROR(this->get_logger(), "service call failed or timed out");
       return;
     }
 
@@ -114,8 +144,26 @@ private:
     auto goal_msg = control_msgs::action::FollowJointTrajectory::Goal();
     goal_msg.trajectory.joint_names = {"joint_1", "joint_2", "joint_3", "joint_4", "joint_5", "joint_6"};
     goal_msg.trajectory.points.resize(1);
+    goal_msg.trajectory.points[0].positions.resize(6);
+    RCLCPP_DEBUG(this->get_logger(), "Setting joint positions for trajectory.");
     std::copy(joint_positions.begin(), joint_positions.end(),
               goal_msg.trajectory.points[0].positions.begin());
+    goal_msg.trajectory.points[0].time_from_start = rclcpp::Duration::from_seconds(1.0);
+    RCLCPP_DEBUG(this->get_logger(), "Joint positions set.");
+    goal_msg.goal_time_tolerance = rclcpp::Duration::from_seconds(3.0);
+    goal_msg.goal_tolerance.resize(6);
+    for (size_t i = 0; i < 6; ++i)
+    {
+      goal_msg.goal_tolerance[i].name = goal_msg.trajectory.joint_names[i];
+      goal_msg.goal_tolerance[i].position = 0.15; // 0.15 rad
+      goal_msg.goal_tolerance[i].velocity = 0.10; // 0.10 rad/s
+
+      if (i == 2)
+      {
+        goal_msg.goal_tolerance[i].position = 0.015; // 1.5 cm
+        goal_msg.goal_tolerance[i].velocity = 0.05;  // 5 cm/s
+      }
+    }
 
     auto send_goal_options = rclcpp_action::Client<control_msgs::action::FollowJointTrajectory>::SendGoalOptions();
 
@@ -134,8 +182,8 @@ private:
                                                  const std::shared_ptr<const control_msgs::action::FollowJointTrajectory::Feedback> feedback)
     {
       std::ostringstream ss;
-      ss << "Current joint positions: [";
-      for (const auto &pos : feedback->actual.positions)
+      ss << "Current joint errors: [";
+      for (const auto &pos : feedback->error.positions)
       {
         ss << pos << " ";
       }
@@ -162,15 +210,23 @@ private:
       RCLCPP_ERROR(this->get_logger(), "Failed to send goal to FollowJointTrajectory action server.");
       return;
     }
+
+    auto result_future = follow_joint_trajectory_client_->async_get_result(future.get());
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+      RCLCPP_ERROR(this->get_logger(), "Failed to get result from FollowJointTrajectory action server.");
+      return;
+    }
+
     RCLCPP_INFO(this->get_logger(), "Joint trajectory goal sent successfully.");
   }
-
-  std::queue<std::function<bool()>> task_queue_;
-  rclcpp::TimerBase::SharedPtr update_timer_;
 
   rclcpp::Client<sushi_bot_interfaces::srv::PickObject>::SharedPtr pick_client_;
   rclcpp::Client<sushi_bot_interfaces::srv::DropObject>::SharedPtr drop_client_;
   rclcpp_action::Client<control_msgs::action::FollowJointTrajectory>::SharedPtr follow_joint_trajectory_client_;
+
+  static constexpr std::array<double, 6> NEUTRAL_POSITION = {0.0, deg2rad(60), 0.0, 0.0, deg2rad(90), 0.0};
 };
 
 int main(int argc, char **argv)

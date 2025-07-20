@@ -18,6 +18,11 @@ target_include_directories(task_executor PUBLIC
   $<INSTALL_INTERFACE:include>)
 ament_target_dependencies(task_executor rclcpp rclcpp_action sushi_bot_interfaces control_msgs)
 
+
+install(
+  TARGETS task_executor
+  DESTINATION lib/${PROJECT_NAME})
+
 install(
   DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
