@@ -1,8 +1,6 @@
 <sdf version='1.7'>
   <world name='default'>
-
-    <plugin name='sushi_bot_gazebo_plugin_pick_and_drop'
-      filename='libsushi_bot_gazebo_plugin_pick_and_drop.so'>
+    <plugin name='sushi_bot_gazebo_plugin_pick_and_drop' filename='libsushi_bot_gazebo_plugin_pick_and_drop.so'>
       <robot_model>sushi_bot</robot_model>
       <robot_link>link_5</robot_link>
       <relative_pose>0.0 0 0.04 0 3.14 0</relative_pose>
@@ -73,6 +71,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
+      <pose>0 0 0 0 -0 0</pose>
     </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
@@ -98,108 +97,9 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <state world_name='default'>
-      <sim_time>1196 442000000</sim_time>
-      <real_time>79 687236934</real_time>
-      <wall_time>1752929284 214625580</wall_time>
-      <iterations>71754</iterations>
-      <model name='Room_Essentials_Salad_Plate_Turquoise'>
-        <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
-        <scale>0.513601 0.513601 0.513601</scale>
-        <link name='link_0'>
-          <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='SalmonSushi_0'>
-        <pose>0.297071 -0.002285 0.020894 0.021881 -0.025663 -0.001672</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0.297071 -0.002285 0.020894 0.021881 -0.025663 -0.001672</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.017748 0.045527 0.063458 2.41204 1.53161 0.510199</acceleration>
-          <wrench>0.001063 0.002727 0.003801 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='SalmonSushi_1'>
-        <pose>0.294587 -0.068097 0.021642 -0.013095 -0.008953 0.000248</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0.294587 -0.068097 0.021642 -0.013095 -0.008953 0.000248</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.020472 0.061755 -0.05552 -2.04212 -1.44165 -2.91274</acceleration>
-          <wrench>-0.001226 0.003699 -0.003326 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='SalmonSushi_2'>
-        <pose>0.296425 0.066106 0.022385 0.069019 -0.012987 0.004498</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0.296425 0.066106 0.022385 0.069019 -0.012987 0.004498</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.020925 -0.034054 -0.017422 -0.212536 1.33841 1.96283</acceleration>
-          <wrench>0.001253 -0.00204 -0.001044 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Sushi_Mat'>
-        <pose>0.298373 0 -0.000925 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>0.298373 0 -0.000925 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring'>
-        <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
-        <scale>0.396968 0.396968 0.396968</scale>
-        <link name='link_0'>
-          <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Threshold_Dinner_Plate_Square_Rim_White_Porcelain'>
-        <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
-        <scale>0.323308 0.323308 0.323308</scale>
-        <link name='link_0'>
-          <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='ground_plane'>
-        <pose>0 0 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0 0 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='unit_box'>
-        <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
-        <scale>1 0.191017 0.146743</scale>
-        <link name='link'>
-          <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <light name='sun'>
-        <pose>0 0 5 0 -0 0</pose>
-      </light>
-    </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>0.807073 0.63878 0.974762 -0 0.837796 -2.51498</pose>
+        <pose>0.842171 0.917412 1.0112 -0 0.713796 -2.36698</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -250,11 +150,11 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.236264 -0.017268 0 0 -0 0</pose>
+      <pose>0.298373 0 -0.000925 0 -0 0</pose>
     </model>
-    <model name='unit_box'>
+    <model name='conveyor_belt'>
       <static>1</static>
-      <pose>0.117255 0.779158 0.5 0 -0 0</pose>
+      <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -271,7 +171,7 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>1 0.999995 1</size>
+              <size>1 0.191017 0.146743</size>
             </box>
           </geometry>
           <max_contacts>20</max_contacts>
@@ -291,7 +191,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>1 0.999995 1</size>
+              <size>1 0.191017 0.146743</size>
             </box>
           </geometry>
           <material>
@@ -354,7 +254,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.074788 -0.437242 0 0 -0 0</pose>
+      <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
       <scale>0.8 0.8 0.8</scale>
     </model>
     <model name='Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring'>
@@ -405,7 +305,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>-0.236051 -0.432535 0 0 -0 0</pose>
+      <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
     </model>
     <model name='Threshold_Dinner_Plate_Square_Rim_White_Porcelain'>
       <static>1</static>
@@ -455,7 +355,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>-0.562001 -0.425563 0 0 -0 0</pose>
+      <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
     </model>
     <model name='SalmonSushi_0'>
       <static>0</static>
@@ -517,7 +417,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.296215 -0.180494 0 0 -0 0</pose>
+      <pose>0.297071 -0.002285 0.020894 0.021881 -0.025663 -0.001672</pose>
     </model>
     <model name='SalmonSushi_1'>
       <static>0</static>
@@ -579,7 +479,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.294691 -0.068318 0.027511 0 -0 0</pose>
+      <pose>0.294587 -0.068097 0.021642 -0.013095 -0.008953 0.000248</pose>
     </model>
     <model name='SalmonSushi_2'>
       <static>0</static>
@@ -641,7 +541,106 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.29668 0.067202 0.027511 0 -0 0</pose>
+      <pose>0.296425 0.066106 0.022385 0.069019 -0.012987 0.004498</pose>
     </model>
+    <state world_name='default'>
+      <sim_time>36 332000000</sim_time>
+      <real_time>36 916287116</real_time>
+      <wall_time>1752997217 598669284</wall_time>
+      <iterations>36332</iterations>
+      <model name='Room_Essentials_Salad_Plate_Turquoise'>
+        <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>-0.159572 0.368849 0.146368 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi_0'>
+        <pose>0.298543 -0.002394 0.020936 0.021342 -0.025697 -0.003964</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.298543 -0.002394 0.020936 0.021342 -0.025697 -0.003964</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.015878 0.026958 -0.018598 -2.04048 -1.30237 0.524503</acceleration>
+          <wrench>-0.000951 0.001615 -0.001114 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi_1'>
+        <pose>0.294609 -0.068098 0.021581 -0.013086 -0.007178 0.000222</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.294609 -0.068098 0.021581 -0.013086 -0.007178 0.000222</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.000643 -0.155738 -0.015821 0.246739 0.055236 -0.718298</acceleration>
+          <wrench>3.8e-05 -0.009329 -0.000948 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='SalmonSushi_2'>
+        <pose>0.296426 0.066168 0.022329 0.064241 -0.01302 0.004549</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.296426 0.066168 0.022329 0.064241 -0.01302 0.004549</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.379635 0.079757 -0.606262 -1.46331 -1.2855 0.370681</acceleration>
+          <wrench>-0.02274 0.004777 -0.036315 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='Sushi_Mat'>
+        <pose>0.298373 0 -0.000925 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>0.298373 0 -0.000925 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='Threshold_Bistro_Ceramic_Dinner_Plate_Ruby_Ring'>
+        <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>0.020029 0.368841 0.146364 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='Threshold_Dinner_Plate_Square_Rim_White_Porcelain'>
+        <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>0.197877 0.368752 0.146365 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='conveyor_belt'>
+        <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>-0.196868 0.368847 0.073317 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
   </world>
 </sdf>
